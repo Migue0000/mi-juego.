@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Juego interactivo de cultura pop, historia y música. Vive una aventura en el multiverso y elige tu destino.">
+  <meta name="keywords" content="juego, historia, cultura pop, música, videojuegos, series, aventuras">
+  <meta name="author" content="TuNombre">
+  <title>Multiverso Pop: Elige tu Destino</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #ff4081;
+    }
+    .opcion {
+      display: block;
+      margin: 15px 0;
+      padding: 12px;
+      background-color: #333;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    .opcion:hover {
+      background-color: #ff4081;
+    }
+    #historia {
+      margin-top: 30px;
+    }
+    #donar {
+      text-align: center;
+      margin-top: 50px;
+    }
+    #donar a {
+      background: #ffc107;
+      color: #000;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    #puntaje {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌌 Multiverso Pop: Elige tu Destino</h1>
+<div id="puntaje">Puntaje: <span id="score">0</span></div>
+<div id="historia">
+  <p>Te despiertas en una ciudad que parece sacada de un sueño: edificios flotan, autos vuelan, y ves carteles de "Gotham City" junto a uno que dice "Hyrule Bienvenido". Estás atrapado en el Multiverso Pop.</p>
+  <p>Una voz te habla: "Tienes que elegir tu camino... solo una ruta te devolverá a casa. Pero cuidado, cada decisión afecta tu destino."</p>
+  <button class="opcion" onclick="irVideojuegos()">Ir al mundo de los videojuegos 🎮</button>
+  <button class="opcion" onclick="irSeries()">Explorar el mundo de las series 📺</button>
+  <button class="opcion" onclick="irMusica()">Seguir la ruta musical 🎵</button>
+</div>
+
+<div id="donar">
+  <p>¿Te gusta el juego? ¡Apóyame con una donación! 💖</p>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=AMVEZKBQGF6MW" target="_blank">Donar $5 - Apoyo Básico</a><br>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=AMVEZKBQGF6MW" target="_blank">Donar $10 - Apoyo Estándar</a><br>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=AMVEZKBQGF6MW" target="_blank">Donar $20 - Apoyo Premium</a><br>
+</div>
+
+<script>
+let puntaje = 0;
+function actualizarPuntaje(valor) {
+  puntaje += valor;
+  document.getElementById("score").textContent = puntaje;
+}
+
+function irVideojuegos() {
+  actualizarPuntaje(10);
+  document.getElementById("historia").innerHTML = `
+    <p>Has entrado a un torneo en el universo de Street Fighter. Ryu te reta a una pelea para darte el mapa del multiverso.</p>
+    <button class="opcion" onclick="ganarPelea()">Aceptar el reto 🥋</button>
+    <button class="opcion" onclick="huir()">Huir del combate 😱</button>
+  `;
+}
+
+function ganarPelea() {
+  actualizarPuntaje(20);
+  document.getElementById("historia").innerHTML = `
+    <p>¡Has ganado! Ryu te entrega el mapa. Ya puedes elegir un nuevo mundo.</p>
+    <button class="opcion" onclick="irSeries()">Ir al mundo de las series 📺</button>
+    <button class="opcion" onclick="irMusica()">Seguir la ruta musical 🎵</button>
+  `;
+}
+
+function huir() {
+  actualizarPuntaje(-5);
+  document.getElementById("historia").innerHTML = `
+    <p>Huyes, pero pierdes credibilidad en el multiverso. Vuelve cuando estés listo.</p>
+    <button class="opcion" onclick="location.reload()">Reiniciar juego 🔁</button>
+  `;
+}
+
+function irSeries() {
+  actualizarPuntaje(15);
+  document.getElementById("historia").innerHTML = `
+    <p>Llegas al universo de Stranger Things. Eleven necesita tu ayuda para cerrar el portal.</p>
+    <button class="opcion" onclick="ayudarEleven()">Ayudar a Eleven 🧠</button>
+    <button class="opcion" onclick="explorarOtroLugar()">Buscar otra dimensión 🌌</button>
+  `;
+}
+
+function ayudarEleven() {
+  actualizarPuntaje(20);
+  document.getElementById("historia").innerHTML = `
+    <p>El portal se cierra con éxito y Eleven te da un pase interdimensional.</p>
+    <button class="opcion" onclick="irMusica()">Seguir la ruta musical 🎵</button>
+  `;
+}
+
+function explorarOtroLugar() {
+  actualizarPuntaje(-5);
+  document.getElementById("historia").innerHTML = `
+    <p>Te pierdes en el Upside Down. Debes reiniciar tu aventura.</p>
+    <button class="opcion" onclick="location.reload()">Reiniciar juego 🔁</button>
+  `;
+}
+
+function irMusica() {
+  actualizarPuntaje(15);
+  document.getElementById("historia").innerHTML = `
+    <p>Estás en un concierto de los Beatles, pero algo anda mal: ¡la música está desincronizada!</p>
+    <button class="opcion" onclick="arreglarMusica()">Subir al escenario y ayudar 🎤</button>
+    <button class="opcion" onclick="salirConcierto()">Salir del concierto 🎧</button>
+  `;
+}
+
+function arreglarMusica() {
+  actualizarPuntaje(20);
+  document.getElementById("historia").innerHTML = `
+    <p>La armonía se restablece. Los Beatles te dan una guitarra mágica para regresar a casa.</p>
+    <p>🎉 ¡Has completado el Multiverso Pop con ${puntaje} puntos!</p>
+    <button class="opcion" onclick="location.reload()">Jugar otra vez 🔁</button>
+  `;
+}
+
+function salirConcierto() {
+  actualizarPuntaje(-10);
+  document.getElementById("historia").innerHTML = `
+    <p>El caos musical te atrapa en una dimensión sin ritmo. Debes comenzar de nuevo.</p>
+    <button class="opcion" onclick="location.reload()">Reiniciar juego 🔁</button>
+  `;
+}
+</script>
+
+</body>
+</html>
